@@ -10,10 +10,12 @@
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx"
   },
   "dependencies": {
+    "@apollo/client": "^3.2.2",
     "@react-native-community/cli": "^4.13.0",
     "@react-native-community/masked-view": "^0.1.10",
     "@react-navigation/native": "^5.7.5",
     "@react-navigation/stack": "^5.9.2",
+    "graphql": "^15.3.0",
     "moment": "^2.29.0",
     "native-base": "^2.13.14",
     "react": "16.13.1",
@@ -47,11 +49,6 @@
       "jsx",
       "json",
       "node"
-    ]
-  },
-  "rnpm": {
-    "assets": [
-      "./assets/fonts/"
     ]
   }
 }

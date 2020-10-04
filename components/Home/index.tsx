@@ -5,8 +5,15 @@ import {View, Text, StyleSheet, Button, TouchableWithoutFeedback } from 'react-n
 
 export interface HomeProps {
   data: string;
+  navigation: any;
 }
-const Home: React.SFC<HomeProps> = () => {
+const Home: React.SFC<HomeProps> = ({navigation}) => {
+  
+  const toList = () => {
+    console.log(navigation);
+    navigation.push('List');
+  }
+
   return (
     <View style={styles.container}>
       <View style={styles.sectionTop}>
@@ -15,7 +22,7 @@ const Home: React.SFC<HomeProps> = () => {
       </View>
       <View style={styles.sectionBottom}>
           <TouchableWithoutFeedback
-            onPress={()=>{}}
+            onPress={()=>{ toList() }}
             style={styles.btnEnter}>
             <View style={styles.btnEnter}>
               <Text style={styles.textBtn}> Enter </Text>  
@@ -51,24 +58,20 @@ const styles = StyleSheet.create({
       color: '#001f3f',
       marginTop: 0,
       fontSize: 20,
-      fontWeight: 'bold'
-
+      fontWeight: 'bold',
+      fontFamily: 'Roboto'
   },
   sectionBottom: {
     marginTop: '80%',
     alignItems: 'center',
     borderRadius: 100,
     marginBottom: 40,
-
-
   },
   btnEnter: {
     paddingVertical: 20,
     borderRadius: 80,
     padding: 0,
-    fontSize: 40,
     minWidth: '50%',
-    textAlign: 'center',
     borderColor: '#001f3f',
     borderWidth: 2
   },
