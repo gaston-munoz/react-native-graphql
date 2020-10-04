@@ -57,11 +57,19 @@ const ProviderDataContext: React.SFC<ContextProps> = (props) => {
     const [ category, setCategory ] = useState('characters');
     const [ filter, setFilter ] = useState('');
 
-    const [ getData, { data, loading, error }] = useLazyQuery(category === 'characters' ? queryCharacters : 
-    category === 'episodes' ? queryEpisodes : queryLocations)
+    const [ getData, { data, loading, error }] = useLazyQuery(
+      category === 'characters' ? queryCharacters :   category === 'episodes' ? queryEpisodes : queryLocations)
 
     useEffect(()=>{
-        getData()
+      if(filter === '' || filter.length >= 3) {
+        getData({
+          variables: { 
+            text: { 
+              name: filter
+            }
+          }
+        })
+      }
     }, [ filter, category ])  
 
     console.log('FROM CONTEXT', data, loading, error, filter, category)
