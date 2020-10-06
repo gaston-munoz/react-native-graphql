@@ -8,6 +8,7 @@ import ProviderDataContext from './context/Context'
 
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
+import DetailEntity from './components/DetailEntity';
 const Stack = createStackNavigator();
 
 const App = () => {
@@ -30,6 +31,14 @@ const App = () => {
               options={{
                 title: 'Awesome Rick & Morty',
                 headerShown: false
+              }}
+            />
+            <Stack.Screen
+              name="Details"
+              component={DetailEntity}
+              options={{
+                title: 'Details',
+//                headerShown: false
               }}
             />
           </Stack.Navigator>

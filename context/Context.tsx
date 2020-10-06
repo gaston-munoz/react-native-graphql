@@ -2,7 +2,7 @@ import React, { createContext, useState, useEffect } from 'react';
 import { useLazyQuery, useQuery, gql, DocumentNode } from '@apollo/client'
 
 export interface ContextProps {
-    
+    children: JSX.Element
 }
 
 export const DataContext = createContext<any>(null);
@@ -53,9 +53,10 @@ const queryLocations: DocumentNode = gql`
  }
 }`
  
-const ProviderDataContext: React.SFC<ContextProps> = (props) => {
+const ProviderDataContext: React.SFC<ContextProps> = ({ children }) => {
     const [ category, setCategory ] = useState('characters');
     const [ filter, setFilter ] = useState('');
+    const [ entityId, setEntityId ] = useState(null)
 
     const [ getData, { data, loading, error }] = useLazyQuery(
       category === 'characters' ? queryCharacters :   category === 'episodes' ? queryEpisodes : queryLocations)
@@ -72,8 +73,6 @@ const ProviderDataContext: React.SFC<ContextProps> = (props) => {
       }
     }, [ filter, category ])  
 
-    console.log('FROM CONTEXT', data, loading, error, filter, category)
-
     return ( 
         <DataContext.Provider
            value={{
@@ -82,12 +81,15 @@ const ProviderDataContext: React.SFC<ContextProps> = (props) => {
                data,
                loading,
                error,
+               entityId,
                
+               getData,
                setFilter,
                setCategory,
+               setEntityId
            }}
          >
-            {props.children}
+            { children }
         </DataContext.Provider>
      );
 }

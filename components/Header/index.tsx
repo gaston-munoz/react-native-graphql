@@ -2,13 +2,10 @@ import React, { useContext } from 'react';
 import { DataContext } from '../../context/Context';
 import { View, StyleSheet } from 'react-native';
 import { Icon, Input, Item } from 'native-base';
+import { IContext } from '../Pagination/index';
 
-export interface HeaderProps {
-    
-}
- 
-const Header: React.SFC<HeaderProps> = () => {
-    const { filter, setFilter } = useContext(DataContext)
+const Header = () => {
+    const { filter, setFilter }: IContext = useContext(DataContext)
     return ( 
         <View style={styles.contentInput}>
             <Item rounded style={styles.sectionInput}>
@@ -30,22 +27,22 @@ const Header: React.SFC<HeaderProps> = () => {
 
 const styles = StyleSheet.create({
     sectionInput: {
-        //marginBottom: 10,
         backgroundColor: '#FFFFFF',
         padding: 3,
         paddingHorizontal: 0,
         color: '#00F',
-        flex: 1,
-       // height: '80%'
-    
-    
-    
+        flex: 1 ,
+        borderWidth: 0,
+        borderColor: '#FFFFFF'
+   
       },
       textInput: {
         margin: 0,
         flex: 1,
         width: '100%',
-        fontSize: 22
+        fontSize: 22,
+        borderWidth: 0,
+        borderColor: '#FFFFFF'
     
       },
       buttonInput: {

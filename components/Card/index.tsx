@@ -1,26 +1,36 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { DataContext } from '../../context/Context';
 import { View,  StyleSheet } from 'react-native';
 import { ListItem, Text, Right, Button, Body, Left, Thumbnail } from 'native-base';
 
 export interface CardProps {
     data: MortyElem,
-    type: string
+    type: string,
+    navigation: any
 }
 
 export interface MortyElem {
     name: string,
     id: number,
-    image: string,
+    image?: string,
     episode?: string,
     dimension?: string
 }
  
-const Card: React.SFC<CardProps> = ({data, type}) => {
+const Card: React.SFC<CardProps> = ({ data, navigation, ...props }) => {
+    const { setEntityId, category: type } = useContext(DataContext);
+
+    const _handleToDetail = () => {
+        console.log('NAV', navigation)
+        setEntityId(data.id);
+        navigation('Details');
+    }
+
     return ( 
         <ListItem 
           selected
           thumbnail
-          onPress={() => { console.log('Thuimb PRES!!') }}
+          onPress={() => { _handleToDetail() }}
           style={styles.card} >
         { 
           type === 'characters' ?    
@@ -63,7 +73,12 @@ const styles = StyleSheet.create({
         paddingVertical: 5,
         paddingHorizontal: 0,
         paddingRight: 3,
- 
+        marginLeft: 0,
+        marginRight: 0,
+
+        marginHorizontal: 0,
+        width: '100%',
+
         borderRadius: 7,
         backgroundColor: '#FFFFFF'
     },

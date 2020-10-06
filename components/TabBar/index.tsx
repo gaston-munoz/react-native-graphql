@@ -1,32 +1,39 @@
 import React, { useContext } from 'react'
 import { TouchableWithoutFeedback, View, Text, StyleSheet } from 'react-native';
 import { DataContext } from '../../context/Context';
+import { IContext } from '../Pagination';
 
 export interface TabBarProps {
     
 }
  
 const TabBar: React.SFC<TabBarProps> = () => {
-    const { category, setCategory } = useContext(DataContext);
+    const { category, setCategory }: IContext = useContext(DataContext);
 
     return ( 
         <View style={styles.contTabBottom}>
         <TouchableWithoutFeedback
           onPress={()=>{ setCategory('episodes') }}
           style={styles.tabItem}>
-          <Text style={styles.textTabItem}>Episodes</Text>
+          <Text style={[styles.textTabItem, {
+            color:  category === 'episodes' ? '#101010' : '#EEEEEE'
+          }]}>Episodes</Text>
         </TouchableWithoutFeedback>
         <View style={styles.separator}></View>
         <TouchableWithoutFeedback
           onPress={()=>{ setCategory('characters') }}
           style={styles.tabItemMiddle}>
-          <Text style={styles.textTabItemMiddle}>Characters</Text>
+          <Text style={[styles.textTabItemMiddle, {
+            color:  category === 'characters' ? '#101010' : '#EEEEEE'
+          }]}>Characters</Text>
         </TouchableWithoutFeedback>
         <View style={styles.separator}></View>
         <TouchableWithoutFeedback
           onPress={()=>{ setCategory('locations') }}
           style={styles.tabItem}>
-          <Text style={styles.textTabItem}>Locations</Text>
+          <Text style={[styles.textTabItem, {
+            color:  category === 'locations' ? '#101010' : '#EEEEEE'
+          }]}>Locations</Text>
         </TouchableWithoutFeedback>
       </View>
      );
@@ -39,8 +46,6 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-evenly',
         alignItems: 'center',
-        borderTopColor: '#000',
-        borderTopWidth: 1
       },
       tabItem: {
         flex: 1,
@@ -54,11 +59,17 @@ const styles = StyleSheet.create({
         color: '#EEEEEE'
     
       },
+      textTabItemLoc: {
+        fontSize: 22,
+        fontWeight: 'bold',
+        color: '#EEEEEE'
+    
+      },
       textTabItemMiddle: {
         fontSize: 22,
         fontWeight: 'bold',
         marginHorizontal: 0,
-        color: '#101010'
+        
     
       },
       separator:{

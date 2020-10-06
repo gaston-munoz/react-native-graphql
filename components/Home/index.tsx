@@ -1,17 +1,19 @@
 /* eslint-disable prettier/prettier */
-import * as React from 'react';
+import React, { useContext } from 'react';
 import moment from 'moment'
-import {View, Text, StyleSheet, Button, TouchableWithoutFeedback } from 'react-native';
+import {View, Text, StyleSheet, TouchableWithoutFeedback } from 'react-native';
+import { DataContext } from '../../context/Context';
+
 
 export interface HomeProps {
-  data: string;
   navigation: any;
 }
 const Home: React.SFC<HomeProps> = ({navigation}) => {
-  
+  const { setFilter } = useContext(DataContext);
+
   const toList = () => {
-    console.log(navigation);
-    navigation.push('List');
+    setFilter('');
+    navigation.push('List', { screen: 'List' });
   }
 
   return (
@@ -39,7 +41,7 @@ const Home: React.SFC<HomeProps> = ({navigation}) => {
 const styles = StyleSheet.create({
   container: {
       flex: 1,
-      backgroundColor: '#EEEEEE',
+      backgroundColor: '#EFEFEF',
       alignItems: 'center'
   },
   sectionTop: {
@@ -47,7 +49,7 @@ const styles = StyleSheet.create({
     alignItems: 'center'
 },
   title: {
-      color: '#001f3f',
+      color: '#0084E1',
       marginTop: 50,
       marginBottom: 15,
       fontSize: 33,
@@ -55,7 +57,7 @@ const styles = StyleSheet.create({
       fontFamily: 'Roboto'
   },
   subtitle: {
-      color: '#001f3f',
+      color: '#0084E1',
       marginTop: 0,
       fontSize: 20,
       fontWeight: 'bold',
@@ -72,11 +74,13 @@ const styles = StyleSheet.create({
     borderRadius: 80,
     padding: 0,
     minWidth: '50%',
-    borderColor: '#001f3f',
+    borderColor: '#0084E1',
+
+   // borderColor: '#001f3f',
     borderWidth: 2
   },
   textBtn: {
-    color: '#001f3f',
+    color: '#0084E1',
     fontSize: 25,
     textAlign: 'center',
     fontWeight: 'bold'
@@ -86,7 +90,7 @@ const styles = StyleSheet.create({
   },
   textDate: {
     fontSize: 18,
-    color: '#001f3f',
+    color: '#0084E1',
     fontWeight: 'bold'
   }
 })
