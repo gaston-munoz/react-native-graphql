@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, View, Image, StyleSheet } from 'react-native';
+import { Text, View, Image, StyleSheet, ScrollView } from 'react-native';
 import { useQuery,  gql, DocumentNode } from '@apollo/client';
 import { Spinner, Left, CardItem,   Card, Body, Icon } from 'native-base';
 import Error from '../Error'
@@ -40,7 +40,7 @@ const DetailCharacter: React.SFC<DeatilCharacterProps> = ({ id, navigation }) =>
     console.log('data.character', data.character)
     const img=  { uri:  image }
     return ( 
-        <View style={styles.content}>
+        <ScrollView style={styles.content}>
           <View style={styles.imageContent}>
             <Image
                 source={{ uri: image}}
@@ -69,7 +69,7 @@ const DetailCharacter: React.SFC<DeatilCharacterProps> = ({ id, navigation }) =>
 
             </View>
           </View>
-        </View>  
+        </ScrollView>  
      
      );
 }
@@ -78,12 +78,13 @@ const styles = StyleSheet.create({
     content: {
         flex: 1,
         backgroundColor:  '#0095f2',
-        paddingVertical: 20,
-        paddingHorizontal: 20,
+        paddingTop: 20,
+        paddingBottom: 60,
+        paddingHorizontal: 15,
     },
     image: {
         width: '100%',
-        height: 350,
+        height: 320,
   borderRadius: 5
 
     },

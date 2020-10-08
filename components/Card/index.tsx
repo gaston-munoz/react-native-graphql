@@ -28,20 +28,16 @@ const Card: React.SFC<CardProps> = ({ data, navigation, ...props }) => {
 
     return ( 
         <ListItem 
-          selected
-          thumbnail
           onPress={() => { _handleToDetail() }}
           style={styles.card} >
         { 
           type === 'characters' ?    
-          <>
-            <Left>
+          <View style={styles.charContent}>
               <Thumbnail large source={{ uri: data.image }} style={styles.thumbnail} />
-            </Left>
             <Body>
               <Text style={styles.text} >{ data.name }</Text>
             </Body>
-          </>  
+          </View>  
             :
             <Body>
               <View style={styles.content}>
@@ -82,16 +78,26 @@ const styles = StyleSheet.create({
         borderRadius: 7,
         backgroundColor: '#FFFFFF'
     },
+    charContent: {
+      flexDirection: 'row',
+      alignItems: 'center',
+      justifyContent: 'flex-start'
+    },
     text: {
         color: '#111111',
         fontSize: 25,
         fontWeight: 'bold',
-        marginLeft: 10
+        marginLeft:0,
+        textAlign: 'left',
+        paddingLeft: 20,
     },
     thumbnail: {
       marginVertical: 5,
       marginHorizontal: 0,
-      marginLeft: 20
+      marginLeft: 20,
+      marginRight: 10,
+      paddingHorizontal: 0,
+
 
     }, 
     headerText: {

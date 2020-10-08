@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, View, Image, StyleSheet } from 'react-native';
+import { Text, View, Image, StyleSheet, ScrollView } from 'react-native';
 import { Spinner, ListItem, Left, Thumbnail, Body } from 'native-base';
 import { useQuery, gql, DocumentNode } from '@apollo/client';
 import Error from '../Error'
@@ -73,7 +73,7 @@ const DetailLocation: React.SFC<DetailLocationProps> = ({ id, navigation }) => {
     console.log('location', name, type, residents, dimension)
 
     return ( 
-        <View style={styles.content}>
+        <ScrollView style={styles.content}>
           <View style={styles.cardBody}>
             <Text style={styles.title} >{ name }</Text>
             <View style={styles.contentCharInfo}>
@@ -103,7 +103,7 @@ const DetailLocation: React.SFC<DetailLocationProps> = ({ id, navigation }) => {
 
             </View>
           </View>
-        </View> 
+        </ScrollView> 
      );
 }
 
@@ -130,7 +130,7 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         fontSize: 29,
         textAlign: 'center',
-        marginVertical: 2,
+        marginVertical: 5,
         fontFamily: 'OpenSans'
         
     },
@@ -145,7 +145,7 @@ const styles = StyleSheet.create({
         fontSize: 24
     },
     contenField:{
-        marginVertical: 2,
+        marginVertical: 5,
         flexDirection: 'row'
     },
     contentCharInfo: {
@@ -162,8 +162,8 @@ const styles = StyleSheet.create({
     // card
 
     card: {
-        marginVertical: 3,
-        paddingVertical: 2,
+        marginVertical: 5,
+        paddingVertical: 5,
         paddingHorizontal: 5,
         paddingRight: 0,
         marginHorizontal: 0,
@@ -176,9 +176,9 @@ const styles = StyleSheet.create({
     },
     text: {
         color: '#111111',
-        fontSize: 25,
+        fontSize: 22,
         fontWeight: 'bold',
-        marginLeft: 10
+        marginLeft: 20
     },
     thumbnail: {
       marginHorizontal: 0,
