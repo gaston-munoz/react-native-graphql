@@ -21,7 +21,6 @@ const Card: React.SFC<CardProps> = ({ data, navigation, ...props }) => {
     const { setEntityId, category: type } = useContext(DataContext);
 
     const _handleToDetail = () => {
-        console.log('NAV', navigation)
         setEntityId(data.id);
         navigation('Details');
     }

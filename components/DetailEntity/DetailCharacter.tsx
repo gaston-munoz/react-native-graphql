@@ -31,13 +31,11 @@ const DetailCharacter: React.SFC<DeatilCharacterProps> = ({ id, navigation }) =>
             id
         }
     })
-    console.log('useQuery', data, loading, error);
 
     if(loading) return <Spinner color='#45b1d5' />;
     if(error) return <Error navigation={navigation} /> 
 
     const { image, name, species, gender, type } = data.character;
-    console.log('data.character', data.character)
     const img=  { uri:  image }
     return ( 
         <ScrollView style={styles.content}>

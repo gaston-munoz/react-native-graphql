@@ -55,22 +55,16 @@ const DetailLocation: React.SFC<DetailLocationProps> = ({ id, navigation }) => {
             id
         }
     })
-    console.log('useQuery', data, loading, error);
     
     if(loading) return <Spinner color='#45b1d5' />;
     if(error) return <Error navigation={navigation} /> 
 
-    console.log(data.location.residents)
-    // data.episode.characters.splice(5, Number(data.episode.characters.length) - 1)
     let residents = []
     for(let i = 0; i < 5; i++) {
         if(data.location.residents[i])
           residents.push(data.location.residents[i])
     }
- 
     const { name, type, dimension  } = data.location
- 
-    console.log('location', name, type, residents, dimension)
 
     return ( 
         <ScrollView style={styles.content}>

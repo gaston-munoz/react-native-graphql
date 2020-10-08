@@ -55,7 +55,6 @@ const DetailEpisode: React.SFC<DetailEpisodeProps> = ({ id, navigation }) => {
             id
         }
     })
-    console.log('useQuery', data, loading, error);
     
     if(loading) return <Spinner color='#45b1d5' />;
     if(error) return <Error navigation={navigation} /> 
