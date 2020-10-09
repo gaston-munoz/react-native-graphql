@@ -6,7 +6,7 @@
 
 * Clonar este repo
 
-* Ejecutar npm start en el directorio raiz del proyecto
+* Ejecutar **npm install** en el directorio raiz del proyecto
 
 * Ejecutar el comando **up** o también funciona **npx react-native run-android**
 
