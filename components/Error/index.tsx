@@ -11,7 +11,7 @@ export interface ErrorProps {
     navigation: any
 }
  
-const Error: React.SFC<ErrorProps> = ({ navigation }) => {
+const Error: React.FC<ErrorProps> = ({ navigation }) => {
     const { setFilter }: IContext = useContext(DataContext);
 
     return ( 
@@ -46,8 +46,6 @@ const styles = StyleSheet.create({
     },
     contentTitle: {
         backgroundColor: 'red',
-
-
     },
     title: {
         color: 'white',

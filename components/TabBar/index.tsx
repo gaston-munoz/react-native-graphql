@@ -7,7 +7,7 @@ export interface TabBarProps {
     
 }
  
-const TabBar: React.SFC<TabBarProps> = () => {
+const TabBar: React.FC<TabBarProps> = () => {
     const { category, setCategory }: IContext = useContext(DataContext);
 
     return ( 

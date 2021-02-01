@@ -13,7 +13,7 @@ import Pagination, { IContext } from '../Pagination'
 export interface ListEntitiesProps {
   navigation: any;
 }
-const ListEntities: React.SFC<ListEntitiesProps> = ({ navigation }) => {
+const ListEntities: React.FC<ListEntitiesProps> = ({ navigation }) => {
   const scrollRef: any = useRef();
 
   const { data, filter, category, loading, setCategory, setFilter, error }: IContext = useContext(DataContext);
@@ -31,31 +31,41 @@ const ListEntities: React.SFC<ListEntitiesProps> = ({ navigation }) => {
     }
   }, [ filter, category ])
 
-  return (
+  const renderList = () => {
+    if(loading) 
+      return showLoading();
+    if(error) 
+      return showError(error);
+  }  
+
+  const showError = (error: any):JSX.Element => {
+    if(error.message !== '404: Not Found')
+      return <Error navigation={navigation} /> 
     
+    return  <Text style={styles.emptyList}>Nothing to show, look for something else...</Text>
+  }
+
+  const showLoading = ():JSX.Element => (
+    <Spinner color='#45b1d5' />
+  )
+
+  return (
     <View style={styles.containerList}>
       <Header />
       <ScrollView
         ref={scrollRef}
         style={styles.sectionScroll}>
-      {
-        loading ? <Spinner color='#45b1d5' /> :
-        error && error.message !== '404: Not Found' ? <Error navigation={navigation} /> 
-        :
-          !elements.length ? <Text style={styles.emptyList}>Nothing to show, look for something else...</Text>
-        :
-        <>
-       { elements.map((elem: any, i: number) => (
-          <Card
-          navigation={(screen: any)=>navigation.navigate(screen)}
-           type={category}
-           data={elem}
-            key={i} />))
+        { renderList() }
+        { 
+          elements && elements.map((elem: any, i: number) => (
+            <Card
+              navigation={(screen: any)=>navigation.navigate(screen)}
+              type={category}
+              data={elem}
+              key={i} 
+            />))
         }
-  
-        { elements && elements.length > 5 ? <Pagination /> : null }
-        </>
-        }
+        { elements && elements.length > 5 && <Pagination /> }
       </ScrollView>
       <TabBar />
     </View>

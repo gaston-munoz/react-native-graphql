@@ -4,25 +4,25 @@ import { View, StyleSheet } from 'react-native';
 import { Icon, Input, Item } from 'native-base';
 import { IContext } from '../Pagination/index';
 
-const Header = () => {
-    const { filter, setFilter }: IContext = useContext(DataContext)
-    return ( 
-        <View style={styles.contentInput}>
-            <Item rounded style={styles.sectionInput}>
-              <Icon active name='search' type='FontAwesome5' />
-              <Input 
-                value={filter}
-                style={styles.textInput}
-                onChangeText={(text) => {setFilter(text)}}
-                placeholder='Search'/>
-            </Item>
-            <Icon 
-              name='times-circle'
-              style={styles.iconButtonInput}
-              onPress={() => setFilter('')}
-              type='FontAwesome5' />
-        </View>
-     );
+const Header = (): JSX.Element => {
+  const { filter, setFilter }: IContext = useContext(DataContext)
+  return ( 
+    <View style={styles.contentInput}>
+        <Item rounded style={styles.sectionInput}>
+          <Icon active name='search' type='FontAwesome5' />
+          <Input 
+            value={filter}
+            style={styles.textInput}
+            onChangeText={(text) => {setFilter(text)}}
+            placeholder='Search'/>
+        </Item>
+        <Icon 
+          name='times-circle'
+          style={styles.iconButtonInput}
+          onPress={() => setFilter('')}
+          type='FontAwesome5' />
+    </View>
+  );
 }
 
 const styles = StyleSheet.create({

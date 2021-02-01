@@ -74,24 +74,24 @@ const ProviderDataContext: React.SFC<ContextProps> = ({ children }) => {
     }, [ filter, category ])  
 
     return ( 
-        <DataContext.Provider
-           value={{
-               filter,
-               category,
-               data,
-               loading,
-               error,
-               entityId,
-               
-               getData,
-               setFilter,
-               setCategory,
-               setEntityId
-           }}
-         >
-            { children }
-        </DataContext.Provider>
-     );
+      <DataContext.Provider
+          value={{
+              filter,
+              category,
+              data,
+              loading,
+              error,
+              entityId,
+              
+              getData,
+              setFilter,
+              setCategory,
+              setEntityId
+          }}
+        >
+          { children }
+      </DataContext.Provider>
+    );
 }
  
 export default ProviderDataContext;

@@ -14,7 +14,7 @@ export interface IContext {
     setFilter: Function;
 }
  
-const Pagination: React.SFC<any> = () => {
+const Pagination: React.FC<any> = () => {
     const { category, filter, setCategory, data, getData }: IContext = useContext(DataContext);
     let nextPag = category === 'characters' ? data.characters.info.next : category === 'episodes' ?
     data.episodes.info.next : data.locations.info.next;
@@ -73,9 +73,7 @@ const Pagination: React.SFC<any> = () => {
             onPress={()=>{ getNextPag(nextPag) }}
             type='FontAwesome5'
             style={[{ fontSize: 20, marginHorizontal: 10, color: nextPag ? '#fff' : '#666'  }]}/>
-
         </View>
-
       </View>
      );
 }

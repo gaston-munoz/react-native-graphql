@@ -17,48 +17,48 @@ export interface MortyElem {
     dimension?: string
 }
  
-const Card: React.SFC<CardProps> = ({ data, navigation, ...props }) => {
+const Card: React.FC<CardProps> = ({ data, navigation, ...props }) => {
     const { setEntityId, category: type } = useContext(DataContext);
 
-    const _handleToDetail = () => {
+    const handleToDetail = () => {
         setEntityId(data.id);
         navigation('Details');
     }
 
+    const renderCard = (): JSX.Element => {
+      if(type === 'characters')
+        return showCharactersCard();    
+      else
+        return showLocaEpiCard();
+    }    
+ 
+    const showLocaEpiCard = (): JSX.Element => (
+      <Body>
+        <View style={styles.content}>
+          <Text style={styles.title} >{ data.name }</Text>   
+        </View> 
+          <View style={styles.content}>
+              <Text style={styles.subtitle} >{ type === 'episodes' ? 'Episode: ' :  'Dimension: ' }</Text>
+              <Text style={styles.subtitle} >{ type === 'episodes' ? data.episode :  data.dimension }</Text>
+          </View> 
+      </Body>  
+    )
+
+    const showCharactersCard = ():JSX.Element => (
+      <View style={styles.charContent}>
+          <Thumbnail large source={{ uri: data.image }} style={styles.thumbnail} />
+        <Body>
+          <Text style={styles.text} >{ data.name }</Text>
+        </Body>
+      </View> 
+    )
+
     return ( 
-        <ListItem 
-          onPress={() => { _handleToDetail() }}
-          style={styles.card} >
-        { 
-          type === 'characters' ?    
-          <View style={styles.charContent}>
-              <Thumbnail large source={{ uri: data.image }} style={styles.thumbnail} />
-            <Body>
-              <Text style={styles.text} >{ data.name }</Text>
-            </Body>
-          </View>  
-            :
-            <Body>
-              <View style={styles.content}>
-                {/*<Text style={styles.subtitle} >Name:</Text> */}
-                <Text style={styles.title} >{ data.name }</Text>   
-              </View> 
-              { type === 'episodes' ?
-                <View style={styles.content} >
-                   {/* <Text style={styles.subtitle} >Episode:</Text> */}
-                    <Text style={styles.subtitle} >Episode: { data.episode }</Text>
-                </View> 
-                : 
-                <View style={styles.content}>
-                    <Text style={styles.subtitle} >Dimension: </Text>
-                    <Text style={styles.subtitle} >{ data.dimension }</Text>
-                </View> 
-              }
-            </Body>  
-
-        }    
-
-        </ListItem>
+      <ListItem 
+        onPress={() => { handleToDetail() }}
+        style={styles.card} >
+        { renderCard() }    
+      </ListItem>
      );
 }
 
@@ -123,9 +123,7 @@ const styles = StyleSheet.create({
     },
     subtitle: {
         color: '#111111',
-        fontSize: 24,
-   //     fontWeight: 'bold',
-   //     textAlign: 'center'
+        fontSize: 24
     }
 })
  

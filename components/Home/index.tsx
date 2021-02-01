@@ -4,7 +4,6 @@ import moment from 'moment'
 import {View, Text, StyleSheet, TouchableWithoutFeedback } from 'react-native';
 import { DataContext } from '../../context/Context';
 
-
 export interface HomeProps {
   navigation: any;
 }
@@ -45,7 +44,6 @@ const styles = StyleSheet.create({
       alignItems: 'center'
   },
   sectionTop: {
- //   backgroundColor: '#001f3f',
     alignItems: 'center'
 },
   title: {
@@ -75,8 +73,6 @@ const styles = StyleSheet.create({
     padding: 0,
     minWidth: '50%',
     borderColor: '#0084E1',
-
-   // borderColor: '#001f3f',
     borderWidth: 2
   },
   textBtn: {
