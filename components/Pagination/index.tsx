@@ -16,10 +16,16 @@ export interface IContext {
  
 const Pagination: React.FC<any> = () => {
     const { category, filter, setCategory, data, getData }: IContext = useContext(DataContext);
-    let nextPag = category === 'characters' ? data.characters.info.next : category === 'episodes' ?
-    data.episodes.info.next : data.locations.info.next;
-    let prevPag = category === 'characters' ? data.characters.info.prev : category === 'episodes' ?
-    data.episodes.info.prev : data.locations.info.prev;
+
+    let nextPag: number;
+    let prevPag: number;
+    let entries: any;
+    if(data) {
+      entries = Object.entries(data);
+    }
+
+    nextPag = entries[0][1]?.info.next;
+    prevPag = entries[0][1]?.info.prev;
 
     const getNextPag = (next: number) => {
       if(next)

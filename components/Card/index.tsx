@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import { DataContext } from '../../context/Context';
+import { DetailsContext } from '../../context/DetailsContext';
 import { View,  StyleSheet } from 'react-native';
 import { ListItem, Text, Right, Button, Body, Left, Thumbnail } from 'native-base';
 
@@ -17,8 +18,9 @@ export interface MortyElem {
     dimension?: string
 }
  
-const Card: React.FC<CardProps> = ({ data, navigation, ...props }) => {
-    const { setEntityId, category: type } = useContext(DataContext);
+const Card: React.FC<CardProps> = ({ data, navigation, ...props }) => { DetailsContext
+    const { category: type } = useContext(DataContext);
+    const { setEntityId } = useContext(DetailsContext);
 
     const handleToDetail = () => {
         setEntityId(data.id);

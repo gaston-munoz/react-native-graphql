@@ -1,5 +1,5 @@
 import React, { createContext, useState, useEffect } from 'react';
-import { useLazyQuery, useQuery, gql, DocumentNode } from '@apollo/client'
+import { useLazyQuery, gql, DocumentNode } from '@apollo/client'
 
 export interface ContextProps {
     children: JSX.Element
