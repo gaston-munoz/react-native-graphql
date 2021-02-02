@@ -38,7 +38,6 @@ const App = () => {
               component={DetailEntity}
               options={{
                 title: 'Details',
-//                headerShown: false
               }}
             />
           </Stack.Navigator>

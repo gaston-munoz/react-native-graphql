@@ -5,21 +5,6 @@ import { Spinner, ListItem, Left, Thumbnail, Body } from 'native-base';
 import Error from '../Error'
 import { ScrollView } from 'react-native-gesture-handler';
 
-const Card = ({ data }: ICard) => {
-    return(
-        <ListItem 
-            thumbnail
-            style={styles.card} >
-        <Left>
-          <Thumbnail square  source={{ uri: data.image }} style={styles.thumbnail} />
-        </Left>
-        <Body>
-          <Text style={styles.text} >{ data.name }</Text>
-        </Body>
-      </ListItem >
-    )
-}
-
 const query: DocumentNode = gql`
 query ($id: ID!) {
   episode (id: $id) {
@@ -46,6 +31,21 @@ interface IChar {
     id: number;
     name: string;
     image: string;
+}
+
+const Card = ({ data }: ICard):JSX.Element => {
+  return(
+      <ListItem 
+          thumbnail
+          style={styles.card} >
+      <Left>
+        <Thumbnail square  source={{ uri: data.image }} style={styles.thumbnail} />
+      </Left>
+      <Body>
+        <Text style={styles.text} >{ data.name }</Text>
+      </Body>
+    </ListItem >
+  )
 }
  
 const DetailEpisode: React.SFC<DetailEpisodeProps> = ({ id, navigation }) => {
